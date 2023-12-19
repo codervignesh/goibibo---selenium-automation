@@ -66,10 +66,10 @@ public class searchPage {
                     && seat2.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill").equals("rgb(255, 255, 255)")
                     && seat3.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill").equals("rgb(255, 255, 255)")) {
                 System.out.println("Empty seat: " + seat2.findElement(By.xpath(".//span[@class=\"seatPrice\"]")).getText());
-                System.out.println(seat2.getText() + "seat 2 is empty");
-                System.out.println(seat1.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill"));
-                System.out.println(seat2.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill"));
-                System.out.println(seat3.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill"));
+                System.out.println(seat2.getText() + "seats " + i + " " + (i+6) + " " + (i+12) + " are empty");
+//                System.out.println(seat1.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill"));
+//                System.out.println(seat2.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill"));
+//                System.out.println(seat3.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill"));
             }
         }
     }
