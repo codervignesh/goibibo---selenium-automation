@@ -1,9 +1,13 @@
 package org.example;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class searchPage {
@@ -56,21 +60,25 @@ public class searchPage {
         List<WebElement> seatElements = driver.findElements(By.cssSelector(".SeatWithTooltipstyles__BusSleeper-sc-dkrka-1"));
 
         Thread.sleep(5000);
+        System.out.println(driver.findElement(By.xpath("//p[@class=\"SrpActiveCardstyles__BusBoldtxtPara-sc-yk1110-7 faoGPx\"]")).getText());
+        System.out.println("₹" + driver.findElement(By.xpath("//span[@class=\"SrpActiveCardstyles__RupeetxtSpan-sc-yk1110-37 iIIlCN\"]")).getText());
 
         for(int i=0;i<6;i++) {
             WebElement seat1 = seatElements.get(i);
             WebElement seat2 = seatElements.get(i + 6);
-            WebElement seat3 = seatElements.get(i + 12);
+//            WebElement seat3 = seatElements.get(i + 12);
 
             if (seat1.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill").equals("rgb(255, 255, 255)")
-                    && seat2.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill").equals("rgb(255, 255, 255)")
-                    && seat3.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill").equals("rgb(255, 255, 255)")) {
-                System.out.println("Empty seat: " + seat2.findElement(By.xpath(".//span[@class=\"seatPrice\"]")).getText());
-                System.out.println(seat2.getText() + "seats " + i + " " + (i+6) + " " + (i+12) + " are empty");
-//                System.out.println(seat1.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill"));
-//                System.out.println(seat2.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill"));
-//                System.out.println(seat3.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill"));
+                    && seat2.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill").equals("rgb(255, 255, 255)")){
+//                    && seat3.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill").equals("rgb(255, 255, 255)")) {
+//                System.out.println("Empty seat: " + seat2.findElement(By.xpath(".//span[@class=\"seatPrice\"]")).getText());
+                System.out.println(seat2.getText() + "seats " + i + " or " + (i+6) );
             }
         }
     }
+    public static void waitForEnableCondition(WebDriver driver, WebElement e){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.elementToBeClickable(e));
+    }
+
 }
