@@ -82,35 +82,38 @@ public class goibibo {
         List<WebElement> seatElements = driver.findElements(By.cssSelector(".SeatWithTooltipstyles__BusSleeper-sc-dkrka-1"));
 
         Thread.sleep(5000);
-        for (WebElement seat : seatElements) {
-            System.out.println(seat.getAttribute("outerHTML"));
-            String seatNumber = seat.findElement(By.xpath(".//span[@class=\"seatNum\"]")).getText();
-            String seatPrice = seat.findElement(By.xpath(".//span[@class=\"seatPrice\"]")).getText();
-//            System.out.println("Seat Number: " + seatNumber + ", Price: " + seatPrice);
-
-            String seatColor = seat.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill");
-            System.out.println(seatColor);
-
-            //occupied "rgb(216, 216, 216)"
-            //unoccupied "rgb(255, 255, 255)"
-
-            // Check if the seat is non-empty and its alternate seat is empty
-            if ("rgb(255, 255, 255)".equals(seatColor)) {
-                System.out.println("in"); //working
-            }
-        }
+//        for (WebElement seat : seatElements) {
+//            System.out.println(seat.getAttribute("outerHTML"));
+//            String seatNumber = seat.findElement(By.xpath(".//span[@class=\"seatNum\"]")).getText();
+//            String seatPrice = seat.findElement(By.xpath(".//span[@class=\"seatPrice\"]")).getText();
+////            System.out.println("Seat Number: " + seatNumber + ", Price: " + seatPrice);
+//
+//            String seatColor = seat.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill");
+//            System.out.println(seatColor);
+//
+//            //occupied "rgb(216, 216, 216)"
+//            //unoccupied "rgb(255, 255, 255)"
+//
+//            // Check if the seat is non-empty and its alternate seat is empty
+//            if ("rgb(255, 255, 255)".equals(seatColor)) {
+//                System.out.println("in"); //working
+//            }
+//        }
 
         for(int i=0;i<6;i++){
             WebElement seat1=seatElements.get(i);
             WebElement seat2=seatElements.get(i+6);
-            System.out.println(seat1.getAttribute("outerHTML"));
-            System.out.println(seat2.getAttribute("outerHTML"));
-            System.out.println(seat1.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill"));
-            System.out.println(seat2.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill"));
+            WebElement seat3=seatElements.get(i+12);
 
             if(seat1.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill").equals("rgb(255, 255, 255)")
-                    && seat2.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill").equals("rgb(255, 255, 255)")){
-                System.out.println(seat1.getText() + "seat1.text");
+                    && seat2.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill").equals("rgb(255, 255, 255)")
+                    && seat3.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill").equals("rgb(255, 255, 255)")){
+                System.out.println("Empty seat: " + seat2.findElement(By.xpath(".//span[@class=\"seatPrice\"]")).getText());
+                System.out.println(seat2.getText() + "seat 2 is empty");
+                System.out.println(seat1.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill"));
+                System.out.println(seat2.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill"));
+                System.out.println(seat3.findElement(By.cssSelector("path:nth-child(1)")).getCssValue("fill"));
+
             }
         }
 
